@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+
+# Angular
+dist/
+.angular/
+
+# Environment files
+*.env
+src/environments/*.ts
+
+# Logs and system files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
