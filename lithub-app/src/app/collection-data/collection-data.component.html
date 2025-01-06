@@ -1,0 +1,42 @@
+<div class="section-1">
+    <div class="container-filter-options">
+        <div class="container-dropdowns">
+            <mat-form-field>
+                <mat-label>Active Integration</mat-label>
+                <mat-select [(value)]="integrationSelected">
+                    <mat-option value="github">Github</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Entity</mat-label>
+                <mat-select [(value)]="entitySelected" (selectionChange)="entitySelectionChanged()">
+                    <mat-option value="repos">Repos</mat-option>
+                    <mat-option value="github-integrations">Github Integrations</mat-option>
+                    <mat-option value="commits">Commits</mat-option>
+                    <mat-option value="pull-requests">Pull Requests</mat-option>
+                    <mat-option value="issues">Issues</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+
+        </div>
+        <div class="search-input">
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input [(ngModel)]="searchTerm" (input)="onFilterTextBoxChanged()" matInput placeholder="Type here.." />
+            </mat-form-field>
+        </div>
+    </div>
+    <app-dynamic-grid [data]="gridData" [filterText]="filterText" />
+    <div class="pagination-container">
+        <button mat-stroked-button [disabled]="currentPage === 1" (click)="prevButtonClick()">Prev</button>
+        <button mat-stroked-button [disabled]="currentPage === totalPages" (click)="nextButtonClick()">Next</button>
+    </div>
+</div>
+@if (loading) {
+    <div class="container-loader">
+        <dotlottie-player src="https://lottie.host/f3738ae6-2a37-4355-93e9-337b3e7cbd52/nWDvTABA6J.lottie"
+            background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+    </div>
+}

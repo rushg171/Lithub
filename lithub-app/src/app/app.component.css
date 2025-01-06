@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container-navbar{
+    margin-top: 20px;
+    margin-left: 180px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+.container-navbar div {
+    display: flex;
+    align-items: center;
+}
+
+.container-navbar a {
+    text-decoration: none; 
+    color: inherit;
+}
+
+.outlet{
+    width: 100%;
+    margin-right: 0px;
+    margin-right: 0px;
+}

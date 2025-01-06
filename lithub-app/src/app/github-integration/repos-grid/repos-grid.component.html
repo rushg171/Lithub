@@ -1,0 +1,10 @@
+
+<ag-grid-angular 
+    style="width: 100%;" 
+    class="ag-theme-alpine"
+    domLayout="autoHeight"
+    [rowData]="rowData" 
+    [columnDefs]="colDefs"
+    (gridReady)="onGridReady($event)"
+    (cellValueChanged)="onCellValueChanged($event)"
+/>

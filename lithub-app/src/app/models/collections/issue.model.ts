@@ -1,0 +1,34 @@
+export interface Issue {
+    _id: string;
+    issue_id: number;
+    node_id: string;
+    number: number;
+    state: string;
+    title: string;
+    body: string;
+    user: {
+      login: string;
+      id: number;
+      node_id: string;
+      avatar_url: string;
+      gravatar_id: string;
+      type: string;
+      site_admin: boolean;
+      _id: string;
+    };
+    labels: Array<any>;
+    assignee: any;
+    assignees: Array<any>;
+    milestone: any;
+    locked: boolean;
+    active_lock_reason: any;
+    comments: number;
+    pull_request: any;
+    closed_at: any;
+    created_at: string;
+    updated_at: string;
+    closed_by: any;
+    author_association: string;
+    state_reason: any;
+    __v: number;
+};  

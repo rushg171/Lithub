@@ -1,0 +1,69 @@
+.section-1{
+    width: 100%;
+    margin-top: 80px;
+}
+
+.connect-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect-to-text {
+    color: blue;
+    font-size: large;
+    margin-top: 20px;
+}
+
+.container-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.container-repo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.container-search-toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.collection-page-button{
+    margin-top: 20px;
+}
+
+
+.search-input {
+    min-width: 300px;
+    padding-right: 12px;
+}
+
+.green-icon {
+    color: green;
+}
+
+
+
+.container-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(161, 161, 161, 0.5); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    backdrop-filter: blur(3px);
+}

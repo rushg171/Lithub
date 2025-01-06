@@ -1,0 +1,65 @@
+<section class="section-1">
+    
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+      <mat-expansion-panel-header>
+        @if (integrationDetails) {
+          <div class="container-user">
+            <mat-panel-title>{{integrationDetails.name}}'s Github</mat-panel-title>
+            <mat-icon class="green-icon" fontIcon="check_circle"></mat-icon>
+          </div>
+        }@else {
+          <mat-panel-title>Github</mat-panel-title>
+        }
+      </mat-expansion-panel-header>
+      @if (integrationDetails) {
+        <div class="container-repo">
+          <div class="container-search-toggle">
+            <div class="search-toggle">
+              <mat-button-toggle-group [value]="searchFrom" (change)="onSearchToggleValueChange($event)" name="searchFrom">
+                <mat-button-toggle value="user-account">Owned by me</mat-button-toggle>
+                <mat-button-toggle value="global-search">Global Search</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+            @if(searchFrom=="global-search"){
+              <div>
+                <mat-form-field class="search-input">
+                  <mat-label>Search repos</mat-label>
+                  <input [(ngModel)]="searchTerm" matInput placeholder="react"/>
+                </mat-form-field>
+                <button mat-flat-button (click)="handleSearch($event)">Search</button>
+              </div>
+            }
+          </div>
+          <app-repos-grid [rowData]="allOrgRepos" (listUpdated)="onListUpdated()"/>
+          <button mat-flat-button color="danger" (click)="deleteIntegrationDetails()">Disconnect Github</button>
+        </div>
+      }@else {
+        <div class="connect-container">
+          <a href="http://localhost:3000/auth/github/connect">
+              <button mat-flat-button (click)="redirectToConnect()">Connect</button>
+          </a>
+          <p class="connect-to-text">Connect SRED.IO to Github</p>
+        </div>
+      }
+      
+    </mat-expansion-panel>
+    <div>
+      @if (integrationDetails) {
+        <div>
+          <p>Live Insights</p>
+          <app-insights-grid [rowData]="insights" />
+        </div>
+      }@else {
+        <p>Connect to view live insights...</p>
+      }
+    </div>
+    <a href="/collection-data" class="collection-page-button">
+      <button mat-flat-button class="collection-page-button" (click)="redirectToConnect()">Checkout all collections</button>
+    </a>
+</section>
+@if (loading) {
+  <div class="container-loader">
+      <dotlottie-player src="https://lottie.host/f3738ae6-2a37-4355-93e9-337b3e7cbd52/nWDvTABA6J.lottie"
+          background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+  </div>
+}
