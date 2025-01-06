@@ -10,7 +10,14 @@ const GithubIntegrationsSchema = new Schema({
   profileUrl: { type: String },
   avatarUrl: { type: String },
   accessToken: { type: String },
-  includedRepos: {type: [Number], default: [], required: false},
+  includedRepos: {
+    type: [{
+      id: { type: Number, required: true },
+      full_name: { type: String, required: true }
+    }],
+    default: [],
+    required: false,
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

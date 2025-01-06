@@ -1,8 +1,7 @@
-const express = require("express");
-
 const IntegrationService = require("../services/integrationService");
 const jwt = require("jsonwebtoken");
 const GithubService = require("../services/githubService");
+const RepoService = require("../services/repoService");
 
 const controller = {
     get: async function(req, res) {
@@ -31,9 +30,7 @@ const controller = {
       try {
           const user = await IntegrationService.findById(req.user.userId);
           if(!user) return res.status(400).send('No user found');
-          console.log(user);
           const result = await GithubService.getAllOrgsForUser(user.accessToken);
-          console.log(result);
 
           res.json(result);
         } catch (err) {
@@ -46,9 +43,7 @@ const controller = {
     try {
         const user = await IntegrationService.findById(req.user.userId);
         if(!user) return res.status(400).send('No user found');
-        console.log(user);
         const result = await GithubService.getReposForAllOrgs(user.accessToken);
-        console.log(result);
 
         res.json(result);
       } catch (err) {
@@ -61,10 +56,7 @@ const controller = {
     try {
         const user = await IntegrationService.findById(req.user.userId);
         if(!user) return res.status(400).send('No user found');
-        console.log(user);
         const result = await IntegrationService.insights(user._id);
-        console.log(result);
-
         res.json(result);
       } catch (err) {
         console.error('JWT verification failed:', err);
@@ -81,7 +73,8 @@ const controller = {
       const {includedRepos} = req.body;
       console.log(includedRepos);
 
-      const result = await IntegrationService.updateIncludedRepos(user._id, includedRepos);
+      
+      const result = await IntegrationService.createRepoAndAddToList(user._id, includedRepos);
 
       res.json(result);
     } catch (err) {
